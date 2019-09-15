@@ -12,6 +12,9 @@
       "role": "Technical Support"
     }
   ],
+  "require": {
+      "magento/product-community-edition": "^2.3.1",
+  },
   "keywords": [
     "magento 2",
     "magento 2 force login",
