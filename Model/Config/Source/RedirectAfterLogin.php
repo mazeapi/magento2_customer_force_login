@@ -1,6 +1,6 @@
 <?php
 
-namespace Mageapi\ForceLogin\Model\Config\Source;
+namespace Mazeapi\ForceLogin\Model\Config\Source;
 
 
 class RedirectAfterLogin
