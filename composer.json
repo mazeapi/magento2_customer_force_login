@@ -2,7 +2,6 @@
   "name": "mazeapi/force-login",
   "description": "Magento 2 Force login for business customer",
   "type": "magento2-module",
-  "version": "0.0.2",
   "license": "proprietary",
   "authors": [
     {
@@ -12,9 +11,6 @@
       "role": "Technical Support"
     }
   ],
-  "require": {
-      "magento/product-community-edition": "^2.3.1"
-  },
   "keywords": [
     "magento 2",
     "magento 2 force login",
