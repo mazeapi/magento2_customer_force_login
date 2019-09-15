@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mazeapi Software.
+ *
+ * @package   Mazeapi_ForceLogin
+ * @author    Mazeapi
+ * @license   https://mazeapi.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<mazeapi_core_settings>
+			<general>
+				<force_login>0</force_login>
+				<redirect_after_login>/customer/account</redirect_after_login>
+			</general>
+		</mazeapi_core_settings>
+	</default>
+</config>

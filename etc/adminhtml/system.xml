@@ -15,11 +15,16 @@
             <tab>mazeapi</tab>
             <resource>Mazeapi_ForceLogin::GeneralSettings</resource>
             <group id="general" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>General</label>
+                <label>Force Login Settings</label>
                 <field id="force_login" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Force Login</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Enable/Disable Force Login Module.</comment>
+                </field>
+                <field id="redirect_after_login" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Redirect After Login</label>
+                    <source_model>Mageapi\ForceLogin\Model\Config\Source\RedirectAfterLogin</source_model>
+                    <comment>Where user redirect after login</comment>
                 </field>
             </group>
 
