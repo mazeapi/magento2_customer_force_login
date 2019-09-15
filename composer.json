@@ -26,5 +26,7 @@
     "psr-4": {
       "Mazeapi\\ForceLogin\\": ""
     }
-  }
+  },
+  "version": "1.0.5",
+  "minimum-stability": "stable"
 }
