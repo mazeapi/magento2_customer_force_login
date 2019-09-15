@@ -49,13 +49,13 @@ class ForceLoginObserver implements ObserverInterface
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Backend\Model\Auth\Session $authSession,
         \Magento\Framework\App\Response\RedirectInterface $redirect,
-        \Mazeapi\ForceLogin\Helper\Data $adminSettings
+        \Mazeapi\ForceLogin\Helper\Data $data
     )
     {
         $this->_customerSession = $customerSession;
         $this->_redirect = $redirect;
         $this->_adminSession = $authSession;
-        $this->_adminSettings = $adminSettings;
+        $this->_adminSettings = $data;
     }
 
     public function execute(Observer $observer)
