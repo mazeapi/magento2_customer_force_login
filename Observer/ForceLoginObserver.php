@@ -19,12 +19,12 @@ class ForceLoginObserver implements ObserverInterface
     /**
      * @var \Magento\Framework\App\Response\RedirectInterface
      */
-    protected $redirect;
+    protected $_redirect;
 
     /**
-     * @var \Strativ\CustomView\Helper\Data
+     * @var \Mazeapi\ForceLogin\Helper\Data
      */
-    protected $_strativHelper;
+    protected $_adminSettings;
 
     /**
      * Customer session
@@ -43,24 +43,24 @@ class ForceLoginObserver implements ObserverInterface
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Magento\Backend\Model\Auth\Session $authSession
      * @param \Magento\Framework\App\Response\RedirectInterface $redirect
-     * @param Strativ\CustomView\Helper\Data $strativHelper
+     * @param Mazeapi\ForceLogin\Helper\Data $adminSettings
      */
     public function __construct(
         \Magento\Customer\Model\Session $customerSession,
         \Magento\Backend\Model\Auth\Session $authSession,
         \Magento\Framework\App\Response\RedirectInterface $redirect,
-        \Strativ\CustomView\Helper\Data $strativHelper
+        \Mazeapi\ForceLogin\Helper\Data $adminSettings
     )
     {
         $this->_customerSession = $customerSession;
-        $this->redirect = $redirect;
+        $this->_redirect = $redirect;
         $this->_adminSession = $authSession;
-        $this->_strativHelper = $strativHelper;
+        $this->_adminSettings = $adminSettings;
     }
 
     public function execute(Observer $observer)
     {
-        if ($this->_strativHelper->isForceLoginEnabled()) {
+        if ($this->_adminSettings->isForceLoginEnabled()) {
 
             $actionName = $observer->getEvent()->getRequest()->getFullActionName();
 
@@ -81,7 +81,7 @@ class ForceLoginObserver implements ObserverInterface
                 'customer_account_confirm',
                 'customer_account_confirmation',
             );
-            
+
             if ($this->_adminSession->isLoggedIn()) {
                 return $this;
             }
@@ -91,7 +91,7 @@ class ForceLoginObserver implements ObserverInterface
             if (in_array($actionName, $openActions) && !$this->_customerSession->isLoggedIn()) {
                 return $this; //if in allowed actions do nothing.
             } elseif (!$this->_customerSession->isLoggedIn()) {
-                $this->redirect->redirect($controller->getResponse(), 'customer/account/login');
+                $this->_redirect->redirect($controller->getResponse(), 'customer/account/login');
             } else {
                 return $this;
             }
