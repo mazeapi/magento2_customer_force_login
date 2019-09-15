@@ -1,7 +1,12 @@
 <?php
 
 /**
- * @author Iftakharul Alam Bappa <iftakharul@strativ.se>
+ * Mazeapi Software.
+ *
+ * @package   Mazeapi_ForceLogin
+ * @author    Mazeapi
+ * @author    Iftakharul Alam <bappa2du@gmail.com>
+ * @license   https://mazeapi.com/license.html
  */
 namespace Mazeapi\ForceLogin\Plugin;
 
@@ -15,15 +20,19 @@ class LoginPostPlugin
      */
     protected $_adminSettings;
 
+    /**
+     * LoginPostPlugin constructor.
+     * @param \Mazeapi\ForceLogin\Helper\Data $data
+     */
     public function __construct(\Mazeapi\ForceLogin\Helper\Data $data)
     {
         $this->_adminSettings = $data;
     }
 
     /**
-     * @param  LoginPost
-     * @param  [type]
-     * @return [type]
+     * @param LoginPost $subject
+     * @param $result
+     * @return mixed
      */
     public function afterExecute(LoginPost $subject, $result)
     {
