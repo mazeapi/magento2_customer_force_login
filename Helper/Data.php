@@ -3,7 +3,6 @@
 /**
  * Mazeapi Software.
  *
- * @package   Mazeapi_ForceLogin
  * @author    Mazeapi
  * @author    Iftakharul Alam <bappa2du@gmail.com>
  * @license   https://mazeapi.com/license.html
@@ -11,20 +10,36 @@
 
 namespace Mazeapi\ForceLogin\Helper;
 
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+
+class Data extends AbstractHelper
 {
 
-    protected $_adminSettings;
+    /**
+     * Config paths
+     */
+    const XML_PATH_ENABLED = 'mazeapi_core_settings/general/force_login';
+    const XML_PATH_REDIRECT_URL = 'mazeapi_core_settings/general/redirect_after_login';
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected $scopeConfig;
 
     /**
      * Data constructor.
-     * @param \Magento\Framework\App\Helper\Context $context
+     * @param Context $context
+     * @param ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context
-    ) {
+        Context $context,
+        ScopeConfigInterface $scopeConfig
+    )
+    {
         parent::__construct($context);
-        $this->_adminSettings = $this->scopeConfig->getValue('mazeapi_core_settings', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -32,7 +47,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function isForceLoginEnabled()
     {
-        return trim($this->_adminSettings['general']['force_login']);
+        return trim($this->scopeConfig->getValue(self::XML_PATH_ENABLED));
     }
 
     /**
@@ -40,6 +55,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getRedirectPath()
     {
-        return trim($this->_adminSettings['general']['redirect_after_login']);
+        return trim($this->scopeConfig->getValue(self::XML_PATH_REDIRECT_URL));
     }
 }

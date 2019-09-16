@@ -18,15 +18,15 @@ class LoginPostPlugin
     /**
      * @var \Mazeapi\ForceLogin\Helper\Data
      */
-    protected $_adminSettings;
+    protected $_dataHelper;
 
     /**
      * LoginPostPlugin constructor.
      * @param \Mazeapi\ForceLogin\Helper\Data $data
      */
-    public function __construct(\Mazeapi\ForceLogin\Helper\Data $data)
+    public function __construct(\Mazeapi\ForceLogin\Helper\Data $dataHelper)
     {
-        $this->_adminSettings = $data;
+        $this->_dataHelper = $dataHelper;
     }
 
     /**
@@ -36,7 +36,7 @@ class LoginPostPlugin
      */
     public function afterExecute(LoginPost $subject, $result)
     {
-        $redirectPath = $this->_adminSettings->getRedirectPath();
+        $redirectPath = $this->_dataHelper->getRedirectPath();
         $result->setPath($redirectPath);
         return $result;
     }
